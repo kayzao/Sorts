@@ -1,23 +1,32 @@
+import java.io.*;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 class Quicksort{
 
-    public static void main(String[] args) {
-        int[] data = {5, 1, 2, 9, 12, 8, 22, 7, 8, 19, 8};
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+        int n = Integer.parseInt(br.readLine());
+        int[] data = new int[n];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i = 0; i < n; i++){
+            data[i] = Integer.parseInt(st.nextToken());
+        }
         System.out.println("Original: " + Arrays.toString(data));
         int pivot = partition( data, 0, data.length-1);
         System.out.println("Pivot value: "+data[pivot]+ ", Pivot index: "+pivot);
         System.out.println("Modified: "+Arrays.toString(data));
         System.out.println();
+        br.close();
     }
     public static int partition(int[] data, int low, int high){
-        int randInd = (int)((Math.random() * (float)(high - low))+low); //random index between low and high
+        int randInd = (int)((Math.random() * (high - low))+low); //random index between low and high
         int place = data[low]; //placeholder to swithch the random index and the first index
         int pivotV = data[randInd]; //pivot value
 
         boolean dupRight = false;
         System.out.println("low: " + low + "\nhigh: " + high);
-        data[low] = pivotV; //why the fuck are we switching
+        data[low] = pivotV; 
         data[randInd] = place; //switch
 
         int i = low + 1;
@@ -35,18 +44,12 @@ class Quicksort{
             if(data[i] == pivotV && !dupRight){
                 dupRight = true;
             }
-            //System.out.println(Arrays.toString(data) + " high:" + high + " i:" + i);
         }
-        //System.out.println(Arrays.toString(data) + " high:" + high);
-        //move pivot to whereever high is
-        //System.out.println("move time");
         int placeH = data[low];
-        //int test = high % 2 == 0 ? high : high - 1;
         int test = high;
         if(data[test] > data[low]) test--;
         for(int j = low + 1; j <= test; j++){
             data[j-1] = data[j];
-            //System.out.println(Arrays.toString(data));
         }
         data[test] = placeH;
 
