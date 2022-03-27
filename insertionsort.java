@@ -1,21 +1,21 @@
 import java.util.*;
 import java.io.*;
 
-public class insertionsort {
+class InsertionSort {
     public static void main(String[] args) throws IOException{
-        File file = new File("input.txt");
-        Scanner scan = new Scanner(file);
-        int n = scan.nextInt();
+        BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+        int n = Integer.parseInt(br.readLine());
         int[] input = new int[n];
-        for(int i = 0; i < n; i++){
-            input[i] = scan.nextInt();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            input[i] = Integer.parseInt(st.nextToken());
         }
-        input = insertsort(input);
+        insertSort(input);
         for(int i : input) System.out.print(i + " ");
         System.out.println();
-        scan.close();
+        br.close();
     }
-    static int[] insertsort(int[] data) {
+    static int[] insertSort(int[] data) {
         for(int i = 1; i < data.length; i++){
             if(data[i-1] > data[i]){ //if prev element > current element
                 int c = data[i];

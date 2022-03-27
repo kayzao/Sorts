@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-class Quicksort{
+class QuickSort{
 
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new FileReader("input.txt"));

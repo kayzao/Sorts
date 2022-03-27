@@ -1,19 +1,19 @@
 import java.util.*;
 import java.io.*;
 
-class selectionsort{
+class SelectionSort{
     public static void main(String[] args) throws IOException{
-        File file = new File("input.txt");
-        Scanner scan = new Scanner(file);
-        int n = scan.nextInt();
+        BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+        int n = Integer.parseInt(br.readLine());
         int[] input = new int[n];
-        for(int i = 0; i < n; i++){
-            input[i] = scan.nextInt();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            input[i] = Integer.parseInt(st.nextToken());
         }
-        input = selectsort(input);
+        selectsort(input);
         for(int i : input) System.out.print(i + " ");
         System.out.println();
-        scan.close();
+        br.close();
     }
     static int[] selectsort(int[] arr){
         for(int i = 0; i < arr.length; i++){
